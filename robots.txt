@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /admin-dashboard.html
+Disallow: /dashboard.html
+Disallow: /profile.html
+Disallow: /client-login.html
+Disallow: /dev-login.html
+Disallow: /admin-login.html
+Disallow: /forgot-password.html
+
+Sitemap: https://crazystudio.fun/sitemap.xml

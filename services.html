@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Services — CrazyStudio</title>
+<meta name="description" content="18 premium services: web, Minecraft, Discord, mobile, automation, design and more.">
+<link rel="canonical" href="https://crazystudio.fun/services.html">
+<meta property="og:title" content="Services — CrazyStudio"><meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23050608'/%3E%3Cpath d='M18 6l-8 5v7l5 3v-3l-2-1v-4l5-3zM16 13l5 3v2l-4 2v2l6-3v-3l-3-2z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<section class="section" style="padding-top:calc(var(--hdr-h) + 80px)">
+  <div class="wrap">
+    <div class="shead" data-reveal>
+      <span class="eyebrow"><span class="dot"></span> Services</span>
+      <h1 class="h-xl">Everything, <span class="silver">under one roof.</span></h1>
+      <p class="lead" style="margin-top:14px">Eighteen specialized services across six categories. Mix and match — or hand us the whole stack.</p>
+    </div>
+    <div class="svc-cats" id="cats" data-reveal></div>
+    <div class="svc-grid" id="svc-grid"></div>
+  </div>
+</section>
+
+<section class="section tight">
+  <div class="wrap">
+    <div class="card center" data-reveal style="padding:50px">
+      <h2 class="h-md">Don't see what you need?</h2>
+      <p class="muted" style="margin-top:10px">If it involves code, pixels or packets — we probably do it. Tell us.</p>
+      <a class="btn btn-primary" style="margin-top:20px" href="contact.html">Request a custom quote</a>
+    </div>
+  </div>
+</section>
+
+<script src="js/config.js"></script><script src="js/supabase.js"></script><script src="js/theme.js"></script><script src="js/main.js"></script>
+<script src="js/auth.js"></script><script src="js/chat.js"></script><script src="js/dashboard.js"></script><script src="js/admin.js"></script><script src="js/profile.js"></script><script src="js/search.js"></script><script src="js/notifications.js"></script><script src="js/settings.js"></script>
+<script>
+const CATS = {
+  all: "All",
+  web: "Web",
+  minecraft: "Minecraft",
+  discord: "Discord",
+  apps: "Apps",
+  automation: "Automation & Cloud",
+  design: "Design & Ops"
+};
+const SVCS = [
+  ["code","Website Development","Landing pages, web apps, dashboards.","web"],
+  ["palette","UI / UX Design","Design systems, prototypes, audits.","design"],
+  ["bolt","SEO","Technical SEO, performance, schema.","design"],
+  ["shield","Security","Hardening, audits, RLS, rate-limits.","design"],
+  ["cog","Maintenance","Retainers, updates, monitoring.","design"],
+  ["cube","Minecraft Server Development","Single-server setups, gamemodes.","minecraft"],
+  ["cube","Minecraft Network Development","Multi-server networks, proxies.","minecraft"],
+  ["cube","Minecraft Plugin Development","Custom Java/Kotlin plugins.","minecraft"],
+  ["palette","Minecraft Resource Packs","Models, textures, shaders.","minecraft"],
+  ["cog","Minecraft Configurations","Tuning, balance, permissions.","minecraft"],
+  ["cog","Minecraft Setup","Full server deployment & ops.","minecraft"],
+  ["bot","Discord Bot Development","Custom bots in JS/Python/Go.","discord"],
+  ["cog","Discord Server Setup","Roles, channels, automation.","discord"],
+  ["shield","Discord Server Management","Moderation, events, growth.","discord"],
+  ["phone","Android Apps","Native & cross-platform mobile.","apps"],
+  ["code","Desktop Apps","Electron / Tauri / native.","apps"],
+  ["bolt","Automation","Workflows, scrapers, integrations.","automation"],
+  ["code","API Development","REST & GraphQL backends.","automation"],
+  ["cloud","Backend Development","Scalable services & databases.","automation"],
+  ["cloud","Hosting Support","Deploy, scale, monitor.","automation"]
+];
+const catsEl = document.getElementById("cats");
+catsEl.innerHTML = Object.entries(CATS).map(([k,v],i)=>`<button class="chip ${i===0?'active':''}" data-cat="${k}">${v}</button>`).join("");
+const grid = document.getElementById("svc-grid");
+function render(cat){
+  const list = cat==="all"?SVCS:SVCS.filter(s=>s[3]===cat);
+  grid.innerHTML = list.map(([i,t,d,c],n)=>`<div class="svc" data-reveal data-d="${n%5}"><span class="tag">${c.toUpperCase()}</span><div class="ic">${CS.icon(i)}</div><h4>${t}</h4><p>${d}</p></div>`).join("");
+  grid.querySelectorAll("[data-reveal]").forEach(e=>e.classList.add("in"));
+}
+catsEl.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{catsEl.querySelectorAll(".chip").forEach(x=>x.classList.remove("active"));b.classList.add("active");render(b.dataset.cat);});
+render("all");
+// anchor jump
+if(location.hash){const c=location.hash.slice(1);if(CATS[c]){catsEl.querySelector(`[data-cat="${c}"]`)?.click();}}
+</script>
+</body></html>

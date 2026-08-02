@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Create account — CrazyStudio</title>
+<meta name="description" content="Join CrazyStudio — create your account in seconds.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="canonical" href="https://crazystudio.fun/register.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23050608'/%3E%3Cpath d='M18 6l-8 5v7l5 3v-3l-2-1v-4l5-3zM16 13l5 3v2l-4 2v2l6-3v-3l-3-2z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="auth-wrap">
+  <div class="auth-card">
+    <div style="text-align:center;margin-bottom:22px">
+      <a class="brand" href="index.html" style="justify-content:center"><span class="mark" id="auth-mark"></span><span class="wm">CRAZY<b>STUDIO</b></span></a>
+      <h2 style="color:#fff;margin-top:16px;font-size:22px">Create your account</h2>
+      <p class="muted" style="font-size:13px;margin-top:4px">Start with a free client account. Upgrade anytime.</p>
+    </div>
+    <form class="form" id="register-form" novalidate>
+      <div class="field"><label>Username</label><input class="input" name="username" required minlength="3" placeholder="pick a handle"></div>
+      <div class="field"><label>Email</label><input class="input" name="email" type="email" required placeholder="you@studio.com"></div>
+      <div class="field"><label>Password</label><input class="input" name="password" type="password" required minlength="6" placeholder="at least 6 characters"></div>
+      <div class="field"><label>Confirm password</label><input class="input" name="password2" type="password" required placeholder="repeat password"></div>
+      <label class="chk" style="font-size:13px;color:var(--muted)"><input type="checkbox" required> I agree to the Terms & Privacy Policy</label>
+      <button class="btn btn-primary btn-block" type="submit">Create account</button>
+    </form>
+    <div class="divider">OR SIGN UP WITH</div>
+    <div class="oauth-row">
+      <button class="oabtn" data-provider="google" data-intent="register">
+        <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.6-1.2 2.9-2.5 3.8v3.1h4c2.4-2.2 3.5-5.4 3.5-9.1z"/><path fill="#34A853" d="M12 24c3.2 0 6-1.1 7.9-2.9l-4-3.1c-1 .7-2.4 1.1-3.9 1.1-3 0-5.6-2-6.5-4.8H1.4v3.2C3.3 21.4 7.3 24 12 24z"/><path fill="#FBBC05" d="M5.5 14.3c-.2-.7-.4-1.5-.4-2.3s.2-1.6.4-2.3V6.5H1.4C.5 8.3 0 10.1 0 12s.5 3.7 1.4 5.5l4.1-3.2z"/><path fill="#EA4335" d="M12 4.8c1.7 0 3.3.6 4.5 1.8l3.4-3.4C17.9 1.2 15.2 0 12 0 7.3 0 3.3 2.6 1.4 6.5l4.1 3.2c.9-2.8 3.5-4.9 6.5-4.9z"/></svg>
+        Google
+      </button>
+      <button class="oabtn" data-provider="discord" data-intent="register">
+        <svg viewBox="0 0 24 24" fill="#5865F2"><path d="M20 4.5A18 18 0 0 0 15.5 3l-.3.5a14 14 0 0 1 4 2 13 13 0 0 0-14.4 0 14 14 0 0 1 4-2L8.5 3A18 18 0 0 0 4 4.5C1.5 8.3.8 12 1 15.7A18 18 0 0 0 6.5 18l.7-1.2c-.8-.3-1.6-.7-2.3-1.2l.5-.4a13 13 0 0 0 11.2 0l.5.4c-.7.5-1.5.9-2.3 1.2L15.5 18a18 18 0 0 0 5.5-2.3c.3-4.3-.6-8-3-11.2ZM8.5 13.5c-.9 0-1.6-.8-1.6-1.8s.7-1.8 1.6-1.8 1.6.8 1.6 1.8-.7 1.8-1.6 1.8Z"/></svg>
+        Discord
+      </button>
+    </div>
+    <p class="auth-foot">Already have an account? <a href="login.html">Sign in</a></p>
+  </div>
+</div>
+
+<script src="js/config.js"></script><script src="js/supabase.js"></script><script src="js/theme.js"></script><script src="js/main.js"></script>
+<script src="js/auth.js"></script><script src="js/chat.js"></script><script src="js/dashboard.js"></script><script src="js/admin.js"></script><script src="js/profile.js"></script><script src="js/search.js"></script><script src="js/notifications.js"></script><script src="js/settings.js"></script>
+<script>document.getElementById("auth-mark").innerHTML = CS.MARK("am");</script>
+</body></html>

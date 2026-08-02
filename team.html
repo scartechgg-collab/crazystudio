@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Team — CrazyStudio</title>
+<meta name="description" content="Meet the humans behind CrazyStudio — founders, engineers, designers and community staff.">
+<link rel="canonical" href="https://crazystudio.fun/team.html">
+<meta property="og:title" content="Team — CrazyStudio"><meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23050608'/%3E%3Cpath d='M18 6l-8 5v7l5 3v-3l-2-1v-4l5-3zM16 13l5 3v2l-4 2v2l6-3v-3l-3-2z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<section class="section" style="padding-top:calc(var(--hdr-h) + 80px)">
+  <div class="wrap">
+    <div class="shead center" data-reveal>
+      <span class="eyebrow"><span class="dot"></span> Team</span>
+      <h1 class="h-xl">The <span class="silver">crew.</span></h1>
+      <p class="lead" style="margin:14px auto 0">Small team, outsized output. Every member ships code, pixels or community magic.</p>
+    </div>
+    <div class="team-grid" id="team" style="margin-top:50px"></div>
+
+    <div class="card center" data-reveal style="padding:50px;margin-top:70px">
+      <h2 class="h-md">We're hiring — remotely, globally.</h2>
+      <p class="muted" style="margin-top:10px">Engineers, designers, community mods. If you obsess over craft, say hi.</p>
+      <a class="btn btn-primary" style="margin-top:20px" href="contact.html">Apply / Say hi</a>
+    </div>
+  </div>
+</section>
+
+<script src="js/config.js"></script><script src="js/supabase.js"></script><script src="js/theme.js"></script><script src="js/main.js"></script>
+<script src="js/auth.js"></script><script src="js/chat.js"></script><script src="js/dashboard.js"></script><script src="js/admin.js"></script><script src="js/profile.js"></script><script src="js/search.js"></script><script src="js/notifications.js"></script><script src="js/settings.js"></script>
+<script>
+(async()=>{ await CS.ready?.();
+const team=document.getElementById("team");
+const list=CS.users.all();
+team.innerHTML=list.map((u,i)=>`<div class="member" data-reveal data-d="${i%5}" onclick="location.href='profile.html?u=${u.username}'" style="cursor:pointer">
+  <div class="av"><span class="init">${u.username[0].toUpperCase()}</span><span class="st" style="background:${u.status==='online'?'var(--ok)':u.status==='away'?'var(--warn)':'var(--muted-2)'}"></span></div>
+  <h4>${u.username}</h4>
+  <div class="role">${u.role.toUpperCase()}</div>
+  <span class="badge-role ${u.role}" style="margin-top:8px">${u.role}</span>
+</div>`).join("");
+})();
+</script>
+</body></html>

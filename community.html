@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Community — CrazyStudio</title>
+<meta name="description" content="Join the CrazyStudio community. Chat on the site, hang out on Discord, or ping us on WhatsApp.">
+<link rel="canonical" href="https://crazystudio.fun/community.html">
+<meta property="og:title" content="Community — CrazyStudio"><meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23050608'/%3E%3Cpath d='M18 6l-8 5v7l5 3v-3l-2-1v-4l5-3zM16 13l5 3v2l-4 2v2l6-3v-3l-3-2z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<section class="section" style="padding-top:calc(var(--hdr-h) + 80px)">
+  <div class="wrap">
+    <div class="shead" data-reveal>
+      <span class="eyebrow"><span class="dot"></span> Community</span>
+      <h1 class="h-xl">Hang out. <span class="silver">Ship together.</span></h1>
+      <p class="lead" style="margin-top:14px">Our primary hub is the in-site chat — realtime, searchable, and tied to your profile. Discord and WhatsApp are there when you want them.</p>
+    </div>
+
+    <div class="com-grid" style="margin-top:50px">
+      <div class="com-card primary" data-reveal>
+        <div class="row" style="gap:10px"><span class="ic" style="width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:rgba(var(--glow-r),var(--glow-g),var(--glow-b),.18);border:1px solid var(--line)">${CS.icon('chat')}</span><h3>In-site chat</h3></div>
+        <p class="muted" style="margin-top:10px">Realtime 1:1 messaging with every member, typing indicators, seen status, presence, emoji, and file sharing. No app install, no invite link — just sign in.</p>
+        <div class="com-stat"><div><div class="k" data-count="2400">0</div><div class="l">messages / day</div></div><div><div class="k" data-count="320">0</div><div class="l">online now</div></div></div>
+        <div class="row" style="margin-top:22px"><a class="btn btn-primary" href="dashboard.html#messages">Open chat</a><a class="btn btn-ghost" href="login.html">Sign in first</a></div>
+      </div>
+      <div class="stack">
+        <div class="com-card" data-reveal data-d="1">
+          <div class="between"><div class="row" style="gap:10px"><span style="color:#7289da">${CS.icon('discord')}</span><h3 style="font-size:18px">Discord</h3></div><a class="btn btn-sm btn-ghost" href="https://dc.gg/crazystudio" target="_blank">Join</a></div>
+          <p class="muted" style="font-size:13px;margin-top:8px">Events, showcases, support channels and voice hangouts.</p>
+          <div class="com-stat" style="margin-top:14px"><div><div class="k" style="font-size:18px">4,820</div><div class="l">members</div></div><div><div class="k" style="font-size:18px">412</div><div class="l">online</div></div></div>
+        </div>
+        <div class="com-card" data-reveal data-d="2">
+          <div class="between"><div class="row" style="gap:10px"><span style="color:#25d366">${CS.icon('whatsapp')}</span><h3 style="font-size:18px">WhatsApp</h3></div><a class="btn btn-sm btn-ghost" href="https://wa.me/0000000000" target="_blank">Message</a></div>
+          <p class="muted" style="font-size:13px;margin-top:8px">Quick pings for clients and urgent support.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid" style="grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px">
+      <div class="card hover" data-reveal><h4 style="color:#fff">Weekly showcases</h4><p class="muted" style="font-size:13px;margin-top:6px">Members demo what they shipped. Feedback, collabs, hype.</p></div>
+      <div class="card hover" data-reveal data-d="1"><h4 style="color:#fff">Office hours</h4><p class="muted" style="font-size:13px;margin-top:6px">Live Q&A with our engineers every Thursday.</p></div>
+      <div class="card hover" data-reveal data-d="2"><h4 style="color:#fff">Open source</h4><p class="muted" style="font-size:13px;margin-top:6px">Contribute to Forge Core and our design tokens.</p></div>
+    </div>
+  </div>
+</section>
+
+<script src="js/config.js"></script><script src="js/supabase.js"></script><script src="js/theme.js"></script><script src="js/main.js"></script>
+<script src="js/auth.js"></script><script src="js/chat.js"></script><script src="js/dashboard.js"></script><script src="js/admin.js"></script><script src="js/profile.js"></script><script src="js/search.js"></script><script src="js/notifications.js"></script><script src="js/settings.js"></script>
+</body></html>

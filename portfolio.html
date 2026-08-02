@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Portfolio — CrazyStudio</title>
+<meta name="description" content="Selected work from CrazyStudio — websites, Minecraft networks, Discord bots, apps and more.">
+<link rel="canonical" href="https://crazystudio.fun/portfolio.html">
+<meta property="og:title" content="Portfolio — CrazyStudio"><meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23050608'/%3E%3Cpath d='M18 6l-8 5v7l5 3v-3l-2-1v-4l5-3zM16 13l5 3v2l-4 2v2l6-3v-3l-3-2z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<section class="section" style="padding-top:calc(var(--hdr-h) + 80px)">
+  <div class="wrap">
+    <div class="between shead" data-reveal style="max-width:none;align-items:end">
+      <div><span class="eyebrow"><span class="dot"></span> Portfolio</span><h1 class="h-xl" style="margin-top:18px">Selected <span class="silver">work.</span></h1></div>
+      <p class="lead">A curated slice of recent deployments. Filter by category, click any card for details.</p>
+    </div>
+    <div class="svc-cats" id="pf-cats" data-reveal style="margin-top:30px"></div>
+    <div class="pf-grid" id="pf-grid"></div>
+  </div>
+</section>
+
+<script src="js/config.js"></script><script src="js/supabase.js"></script><script src="js/theme.js"></script><script src="js/main.js"></script>
+<script src="js/auth.js"></script><script src="js/chat.js"></script><script src="js/dashboard.js"></script><script src="js/admin.js"></script><script src="js/profile.js"></script><script src="js/search.js"></script><script src="js/notifications.js"></script><script src="js/settings.js"></script>
+<script>
+const ITEMS=[
+  {t:"Nexus Network",c:"minecraft",d:"12-server Minecraft network with custom lobby, matchmaking and cosmetics. 40k MAU.",tag:"Java · Velocity · Redis",video:false},
+  {t:"Aurora Bot",c:"discord",d:"Modular Discord bot powering 400+ communities with tickets, leveling and moderation.",tag:"Node · Discord.js · Postgres",video:false},
+  {t:"Orbit Dashboard",c:"web",d:"Realtime analytics dashboard for game studios with live presence and chat.",tag:"Vanilla · Supabase · WebSockets",video:false},
+  {t:"Pulse Mobile",c:"apps",d:"Companion app for Minecraft networks — stats, shop, friends.",tag:"Kotlin · Compose",video:false},
+  {t:"Forge Core",c:"minecraft",d:"Open-source plugin framework used by 30+ networks.",tag:"Kotlin · Paper API",video:true},
+  {t:"Halo Website",c:"web",d:"Premium marketing site for an esports org with custom CMS.",tag:"HTML · CSS · Vanilla JS",video:false},
+  {t:"Streamline",c:"automation",d:"Automation suite connecting Discord, Stripe and game servers.",tag:"Node · n8n · Webhooks",video:false},
+  {t:"Echo Design System",c:"design",d:"Full design system + component library for a SaaS client.",tag:"Figma · CSS tokens",video:false},
+  {t:"Vertex Cloud",c:"automation",d:"Multi-region game server orchestration with autoscaling.",tag:"Docker · K8s · Go",video:false}
+];
+const CATS=[["all","All"],["web","Web"],["minecraft","Minecraft"],["discord","Discord"],["apps","Apps"],["automation","Automation"],["design","Design"]];
+const catsEl=document.getElementById("pf-cats");const grid=document.getElementById("pf-grid");
+catsEl.innerHTML=CATS.map(([k,v],i)=>`<button class="chip ${i===0?'active':''}" data-cat="${k}">${v}</button>`).join("");
+function render(cat){
+  const list=cat==="all"?ITEMS:ITEMS.filter(x=>x.c===cat);
+  grid.innerHTML=list.map((x,i)=>`<div class="pf" data-i="${ITEMS.indexOf(x)}" data-reveal data-d="${i%5}">
+    <div class="thumb" style="background:radial-gradient(circle at ${20+i*10}% 30%,rgba(var(--glow-r),var(--glow-g),var(--glow-b),.${3+i%4}),#0a0c10 70%)"></div>
+    ${x.video?'<div class="play">'+CS.icon('play')+'</div>':''}
+    <div class="ov"><span class="cat">${x.c}</span><h4>${x.t}</h4><p>${x.d}</p></div></div>`).join("");
+  grid.querySelectorAll(".pf").forEach(el=>el.onclick=()=>open(ITEMS[+el.dataset.i]));
+  grid.querySelectorAll("[data-reveal]").forEach(e=>e.classList.add("in"));
+}
+catsEl.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{catsEl.querySelectorAll(".chip").forEach(x=>x.classList.remove("active"));b.classList.add("active");render(b.dataset.cat);});
+function open(x){
+  CS.modal(`<div style="aspect-ratio:16/9;border-radius:14px;background:radial-gradient(circle at 30% 20%,rgba(var(--glow-r),var(--glow-g),var(--glow-b),.3),#0a0c10 70%);display:grid;place-items:center;margin-bottom:18px">${x.video?CS.icon('play'):'<span style="font-family:var(--font-d);font-size:40px;color:#fff">'+x.t[0]+'</span>'}</div>
+    <span class="pill">${x.c}</span>
+    <h3 style="color:#fff;margin-top:10px">${x.t}</h3>
+    <p class="muted" style="margin-top:8px">${x.d}</p>
+    <div class="row" style="margin-top:14px"><span class="pill">${x.tag}</span></div>
+    <div class="row" style="margin-top:20px"><a class="btn btn-primary" href="contact.html">Start similar project</a><a class="btn btn-ghost" href="https://dc.gg/crazystudio" target="_blank">Discuss on Discord</a></div>`);
+}
+render("all");
+</script>
+</body></html>
