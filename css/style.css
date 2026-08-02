@@ -572,34 +572,39 @@ body.maintenance #maint-banner{display:block}
   box-shadow:0 0 18px rgba(var(--glow-r),var(--glow-g),var(--glow-b),.8);animation:pulse 1.6s var(--ease) infinite}
 @keyframes pulse{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(.75);opacity:.6}}
 
-/* ---------- Cloudflare Turnstile verification gate ---------- */
-#verify-gate{position:fixed;inset:0;z-index:5000;background:rgba(3,4,6,.74);backdrop-filter:blur(16px);
-  display:grid;place-items:center;padding:22px;transition:opacity .5s var(--ease),visibility .5s}
+/* ---------- Cloudflare Turnstile verification — FULL PAGE ---------- */
+#verify-gate{position:fixed;inset:0;z-index:5000;background:var(--bg);
+  display:grid;place-items:center;padding:22px;transition:opacity .6s var(--ease),visibility .6s;overflow:hidden}
 #verify-gate.done{opacity:0;visibility:hidden}
-.verify-card{width:min(420px,100%);background:rgba(10,12,16,.96);border:1px solid var(--line);border-radius:24px;
-  padding:34px 30px 30px;text-align:center;position:relative;overflow:hidden;
-  box-shadow:0 50px 100px -40px #000,0 0 60px -30px rgba(var(--glow-r),var(--glow-g),var(--glow-b),.4);
-  animation:gateIn .6s var(--ease)}
-@keyframes gateIn{from{opacity:0;transform:translateY(24px) scale(.96)}}
-.verify-card::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;
-  background:linear-gradient(140deg,rgba(var(--glow-r),var(--glow-g),var(--glow-b),.5),transparent 45%);
-  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-  -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
-.verify-card .v-mark{width:62px;height:62px;margin:0 auto 16px;position:relative}
-.verify-card .v-mark svg{width:100%;height:100%;filter:drop-shadow(0 0 14px rgba(var(--glow-r),var(--glow-g),var(--glow-b),.4))}
-.verify-card .v-mark .v-ring{position:absolute;inset:-9px;border-radius:50%;
+#verify-gate .vg-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+#verify-gate .vg-bg .bg-grid{position:absolute;inset:-2px;
+  background-image:linear-gradient(to right,rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,.035) 1px,transparent 1px);
+  background-size:64px 64px;mask-image:radial-gradient(ellipse 90% 70% at 50% 40%,#000 30%,transparent 80%);
+  -webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 40%,#000 30%,transparent 80%)}
+#verify-gate .vg-bg .bg-spot{position:absolute;width:640px;height:640px;top:50%;left:50%;transform:translate(-50%,-50%);
+  border-radius:50%;filter:blur(110px);opacity:.5;background:radial-gradient(circle,rgba(var(--glow-r),var(--glow-g),var(--glow-b),.22),transparent 65%)}
+.verify-card{width:min(460px,100%);text-align:center;position:relative;z-index:1;animation:gateIn .7s var(--ease)}
+@keyframes gateIn{from{opacity:0;transform:translateY(28px)}}
+.verify-card .v-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-m);font-size:11px;
+  letter-spacing:.3em;text-transform:uppercase;color:var(--muted);padding:6px 14px;border:1px solid var(--line);
+  border-radius:999px;background:var(--panel);margin-bottom:26px}
+.verify-card .v-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--glow);box-shadow:0 0 10px var(--glow)}
+.verify-card .v-mark{width:88px;height:88px;margin:0 auto 22px;position:relative}
+.verify-card .v-mark svg{width:100%;height:100%;filter:drop-shadow(0 0 22px rgba(var(--glow-r),var(--glow-g),var(--glow-b),.45))}
+.verify-card .v-mark .v-ring{position:absolute;inset:-12px;border-radius:50%;
   border:2px solid transparent;border-top-color:var(--glow);animation:ringSpin 1.2s linear infinite}
-.verify-card h3{color:#fff;font-size:20px}
-.verify-card .v-sub{color:var(--muted);font-size:13px;margin-top:6px}
-.verify-card .v-widget{margin:20px auto 0;display:flex;justify-content:center;min-height:65px;align-items:center}
-.verify-card .v-wait{color:var(--muted-2);font-family:var(--font-m);font-size:11px;letter-spacing:.15em;margin-top:16px}
-.verify-card .v-ok{display:none;margin:20px auto 0;width:58px;height:58px;border-radius:50%;
+.verify-card h3{color:#fff;font-size:clamp(24px,3.4vw,34px);font-family:var(--font-d)}
+.verify-card .v-sub{color:var(--muted);font-size:14.5px;margin-top:10px;max-width:38ch;margin-left:auto;margin-right:auto}
+.verify-card .v-widget{margin:34px auto 0;display:flex;justify-content:center;min-height:70px;align-items:center}
+.verify-card .v-wait{color:var(--muted-2);font-family:var(--font-m);font-size:11px;letter-spacing:.2em;margin-top:22px}
+.verify-card .v-ok{display:none;margin:30px auto 0;width:72px;height:72px;border-radius:50%;
   background:rgba(70,214,163,.12);border:1px solid rgba(70,214,163,.5);place-items:center;color:var(--ok);
   animation:popOk .5s var(--ease)}
 @keyframes popOk{0%{transform:scale(.4);opacity:0}70%{transform:scale(1.1)}100%{transform:scale(1)}}
 .verify-card.perfect .v-widget{display:none}
 .verify-card.perfect .v-ok{display:grid}
 .verify-card.perfect .v-wait{color:var(--ok)}
+.verify-card .v-foot{margin-top:40px;font-family:var(--font-m);font-size:10.5px;color:var(--muted-2);letter-spacing:.15em}
 
 /* ---------- Custom themed dropdown ---------- */
 .cs-select{position:relative;width:100%}

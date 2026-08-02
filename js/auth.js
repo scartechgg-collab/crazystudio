@@ -54,7 +54,7 @@
     const done = btnBusy(form.querySelector("button[type=submit]"), "Creating account…");
     try {
       await CS.ready?.();
-      const { needsConfirm } = await CS.auth.signUp({ email, password, username });
+      const { needsConfirm } = await CS.auth.signUp({ email, password: pass, username });
       if (needsConfirm) {
         // email confirmation required → custom "check your mail" window
         renderCheckMail(form.closest(".auth-card"), email);

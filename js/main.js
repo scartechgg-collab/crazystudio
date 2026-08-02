@@ -296,16 +296,21 @@
     const KEY = CFG.TURNSTILE_SITE_KEY;
     if (!KEY) return;
     if (sessionStorage.getItem("cs_verified") === "1") return;
-    const gate = document.createElement("div"); gate.id = "verify-gate";
-    gate.innerHTML = `<div class="verify-card" role="dialog" aria-modal="true" aria-label="Human verification">
+    document.body.classList.add("locked");
+    const gate = document.createElement("div"); gate.id = "verify-gate"; gate.setAttribute("role", "dialog"); gate.setAttribute("aria-modal", "true"); gate.setAttribute("aria-label", "Human verification");
+    gate.innerHTML = `<div class="vg-bg"><div class="bg-grid"></div><div class="bg-spot"></div></div>
+    <div class="verify-card">
+      <span class="v-eyebrow"><span class="dot"></span> Security check</span>
       <div class="v-mark">${MARK("vg")}<span class="v-ring"></span></div>
-      <h3>Quick human check</h3>
-      <p class="v-sub">CrazyStudio is protected by Cloudflare Turnstile.</p>
+      <h3>You're almost in.</h3>
+      <p class="v-sub">CrazyStudio is protected by Cloudflare Turnstile. Complete the quick check below to continue to the site.</p>
       <div class="v-widget" id="cf-turnstile"></div>
-      <div class="v-ok"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 12 5 5 9-11"/></svg></div>
+      <div class="v-ok"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 12 5 5 9-11"/></svg></div>
       <p class="v-wait" id="v-wait">VERIFYING…</p>
+      <p class="v-foot">PROTECTED BY CLOUDFLARE · CRAZYSTUDIO SECURITY</p>
     </div>`;
     document.body.appendChild(gate);
+    const unlock = () => document.body.classList.remove("locked");
 
     window.__csTS = function (token) {
       const card = gate.querySelector(".verify-card");
@@ -314,7 +319,7 @@
         card.classList.add("perfect");
         gate.querySelector("#v-wait").textContent = "VERIFIED ✦ WELCOME";
         sessionStorage.setItem("cs_verified", "1");
-        setTimeout(() => gate.classList.add("done"), 900);
+        setTimeout(() => { gate.classList.add("done"); unlock(); }, 900);
         setTimeout(() => gate.remove(), 1600);
       };
       if (CFG.TURNSTILE_VERIFY_URL) {
